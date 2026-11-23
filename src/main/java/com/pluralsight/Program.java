@@ -26,20 +26,25 @@ public class Program {
 
         // The result list starts empty. The loop looks at every person and
         // copies the ones that match into it
-        List<Person> matchingPeople = new ArrayList<>();
-        for (Person person : people) {
+        // List<Person> matchingPeople = new ArrayList<>();
+
+        /*for (Person person : people) {
             // A match on the first name OR on the last name counts.
             // equalsIgnoreCase: smith finds Smith
             if (person.getFirstName().equalsIgnoreCase(searchName) ||
                     person.getLastName().equalsIgnoreCase(searchName)) {
                 matchingPeople.add(person);
             }
-        }
+        }*/
+        List<Person> matchingPeople = people.stream().filter(person -> person.getFirstName().equalsIgnoreCase(searchName) ||
+                person.getLastName().equalsIgnoreCase(searchName)).toList();
 
         System.out.println("People with matching name:");
-        for (Person person : matchingPeople) {
+        /*for (Person person : matchingPeople) {
             System.out.println(person.getFirstName() + " " + person.getLastName());
-        }
+        }*/
+
+        matchingPeople.forEach(person -> System.out.println(matchingPeople));
 
         //int averageAge = calculateAverageAge(people);
         double averageAge = calculateAverageAge(people);
@@ -85,11 +90,11 @@ public class Program {
     // totalAge is a double on purpose: dividing an int by an int would
     // throw the decimals away (305 / 10 would give 30, not 30.5)
     private static double calculateAverageAge(List<Person> people) {
-        double totalAge = 0;
+        /*double totalAge = 0;
         for (Person person : people) {
             totalAge += person.getAge();
         }
-        return totalAge / people.size();
+        return totalAge / people.size();*/
     }
 
     // Keeps the highest age seen so far. maxAge starts at the smallest
